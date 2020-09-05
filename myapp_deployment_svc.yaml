@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radhika-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: radhikaflaskapp
+  template:
+    metadata:
+      labels:
+        app: radhikaflaskapp
+    spec:
+      containers:
+      - name: radhikaflaskapp
+        image: radhikavya91/flask_prometheus:6
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: radhika-flaskappsvc
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+    nodePort: 30901
+  selector:
+    app: radhikaflaskapp
