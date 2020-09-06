@@ -24,19 +24,19 @@ sample_external_url_response_ms{url="https://httpstat.us/503"} 37.602
 
 ### Steps
 ##### - Docker build
-docker build -t flask_prometheus .
-docker tag flask_prometheus radhikavya91/flask_prometheus:6
-docker push radhikavya91/flask_prometheus:6
+`docker build -t flask_prometheus .`
+`docker tag flask_prometheus radhikavya91/flask_prometheus:6`
+`docker push radhikavya91/flask_prometheus:6`
 
 ##### - Application Deployment
-kubectl apply -f myapp_deployment_svc.yaml
+`kubectl apply -f myapp_deployment_svc.yaml`
 
 ##### - Prometheus Deployment
-kubectl create configmap prometheus-cm --from-file prometheus.yml
-kubectl apply -f prometheus_deployment_svc.yaml
+`kubectl create configmap prometheus-cm --from-file prometheus.yml`
+`kubectl apply -f prometheus_deployment_svc.yaml`
 
 ##### - Grafana Deployment
-kubectl apply -f grafana_deployment_svc.yaml
+`kubectl apply -f grafana_deployment_svc.yaml`
 
 ```
  kubectl get deployments
