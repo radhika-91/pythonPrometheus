@@ -23,22 +23,22 @@ sample_external_url_response_ms{url="https://httpstat.us/503"} 37.602
 
 
 ### Steps
-- #####Docker build
+##### Docker build
 docker build -t flask_prometheus .
 docker tag flask_prometheus radhikavya91/flask_prometheus:6
 docker push radhikavya91/flask_prometheus:6
 
-- #####Application Deployment
+##### Application Deployment
 kubectl apply -f myapp_deployment_svc.yaml
 
-- #####Prometheus Deployment
+##### Prometheus Deployment
 kubectl create configmap prometheus-cm --from-file prometheus.yml
 kubectl apply -f prometheus_deployment_svc.yaml
 
-- #####Grafana Deployment
+##### Grafana Deployment
 kubectl apply -f grafana_deployment_svc.yaml
 
-####Testing
+### Testing
 To test on metrics exposed by application on /metrics
 ```
 curl localhost:5000/metrics
@@ -55,12 +55,12 @@ sample_external_url_up{url="https://httpstat.us/503"} 0.0
 # TYPE sample_external_url_response_ms gauge
 sample_external_url_response_ms{url="https://httpstat.us/503"} 37.602
 ```
-#####Prometheus 
+##### Prometheus 
 - Check for the tragets monitried by Promethues.
 - Check for metrics sample_external_url_up and sample_external_url_response_ms in its Expression dashboard .
 
 
-#####Grafana
+##### Grafana
 - Add Prometheus as datasource to caliberate graphs for the metrics obtained.
 
 Related images are added in images folder.
